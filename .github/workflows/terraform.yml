@@ -1,12 +1,21 @@
 name: Terraform CI/CD Pipeline
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    workflow_dispatch:
+      inputs:
+        terraform_action:
+        type: choice
+        description: Select Terraform action
+        options:
+          - apply
+          - destroy
+        required: true
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
 
 jobs:
   terraform:
